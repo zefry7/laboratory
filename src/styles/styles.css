@@ -1,0 +1,165 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-style: 100%;
+  line-height: 1;
+  font-style: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: initial;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none;
+  color: currentColor;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: inherit;
+  font-weight: 400;
+  cursor: default;
+}
+
+p {
+  cursor: default;
+}
+
+address {
+  font-style: normal;
+}
+
+select {
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.tictac {
+  height: 100vh;
+}
+.tictac__wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.tictac__content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tictac__title {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 700;
+}
+.tictac__field {
+  border-radius: 17px;
+  height: 450px;
+  width: 450px;
+  border: 15px solid rgb(37, 37, 37);
+  background-color: rgb(73, 73, 73);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 120px));
+  gap: 10px;
+}
+.tictac__cell {
+  height: 120px;
+  width: 120px;
+  background-color: white;
+  border-radius: 7px;
+  padding: 10px;
+}
+.tictac__cell-o {
+  border: 15px solid green;
+  border-radius: 100%;
+  height: 100%;
+  width: 100%;
+}
+.tictac__cell-x {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.tictac__cell-x span {
+  position: absolute;
+  display: inline-block;
+  height: 10px;
+  width: 100%;
+  border-radius: 15px;
+  background-color: red;
+}
+.tictac__cell-x span:first-child {
+  top: 45%;
+  transform: rotateZ(45deg);
+}
+.tictac__cell-x span:last-child {
+  top: 45%;
+  transform: rotateZ(-45deg);
+}
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+}/*# sourceMappingURL=styles.css.map */
