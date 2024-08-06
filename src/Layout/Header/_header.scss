@@ -1,0 +1,37 @@
+.header {
+    position: absolute;
+    top: 0;
+    left: -300px;
+    background-color: white;
+    height: 100%;
+    transition: left ease-in 0.15s;
+    &__content {
+        padding: 40px;
+        position: relative;
+        width: 300px;
+        height: 100%;
+        border-right: 3px solid var(--black-1);
+    }
+
+    &__logo {
+        font-size: 28px;
+        font-weight: 200;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: var(--black-1);
+    }
+
+    &__menu-button {
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        background: var(--black-1);
+        right: -50px;
+        top: 5px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    &_visible {
+        left: 0px;
+    }
+}

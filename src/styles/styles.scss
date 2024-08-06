@@ -1,5 +1,10 @@
 @import "./null-style";
+@import "../Layout/Header/header";
 @import "../Components/Tictac/tictactoe";
+
+:root {
+    --black-1: #222222;
+}
 
 
 body {
@@ -7,6 +12,5 @@ body {
 }
 
 #root {
-    max-width: 1440px;
     margin: 0 auto;
 }
