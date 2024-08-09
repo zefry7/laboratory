@@ -100,16 +100,9 @@
     }
 
     &__button-restart {
+        @extend .style-button;
         width: 440px;
-        height: 60px;
-        font-size: 24px;
-        background-color: var(--black-1);
-        border-radius: 10px;
-        color: white;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        transition: all linear 0.15s;
         animation: opacity-zero linear 0.15s forwards;
-        border: 3px solid transparent;
         &:hover {
             background: white;
             border-color: var(--black-1);

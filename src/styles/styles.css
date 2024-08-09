@@ -107,10 +107,25 @@ select {
   border-right: 3px solid var(--black-1);
 }
 .header__logo {
+  margin-bottom: 10px;
   font-size: 28px;
   font-weight: 200;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: var(--black-1);
+  cursor: pointer;
+}
+.header__line {
+  margin-bottom: 20px;
+  height: 2px;
+  background-color: var(--black-1);
+}
+.header__section-button {
+  font-weight: 700;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: transparent;
+  font-size: 20px;
+  text-align: left;
+  width: 100%;
 }
 .header__menu-button {
   position: absolute;
@@ -124,6 +139,31 @@ select {
 }
 .header_visible {
   left: 0px;
+}
+
+.intro {
+  height: 100vh;
+}
+.intro__wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.intro__content {
+  margin: 0 auto;
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.intro__title {
+  margin-bottom: 30px;
+  font-size: 36px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.intro__button {
+  width: 300px;
 }
 
 .tictac {
@@ -219,15 +259,7 @@ select {
 }
 .tictac__button-restart {
   width: 440px;
-  height: 60px;
-  font-size: 24px;
-  background-color: var(--black-1);
-  border-radius: 10px;
-  color: white;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  transition: all linear 0.15s;
   animation: opacity-zero linear 0.15s forwards;
-  border: 3px solid transparent;
 }
 .tictac__button-restart:hover {
   background: white;
@@ -260,4 +292,23 @@ select {
 
 #root {
   margin: 0 auto;
+}
+
+.style-button, .intro__button, .tictac__button-restart {
+  height: 60px;
+  font-size: 24px;
+  background-color: var(--black-1);
+  border-radius: 10px;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  transition: all linear 0.15s;
+  border: 3px solid transparent;
+}
+.style-button:hover, .intro__button:hover, .tictac__button-restart:hover {
+  background: white;
+  border-color: var(--black-1);
+  color: var(--black-1);
+}
+.style-button:active, .intro__button:active, .tictac__button-restart:active {
+  transform: translateY(3px);
 }/*# sourceMappingURL=styles.css.map */

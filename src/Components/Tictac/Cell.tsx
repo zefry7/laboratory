@@ -61,6 +61,9 @@ function Cell({ grid, changeGrid, index, blockStep, countRound, stepMe, stepBot 
     useEffect(() => {
         if (countRound == 1) {
             setActive(4)
+            if(refWrapperCell.current) {
+                refWrapperCell.current.classList.remove("tictac__cell-wrapper_active")
+            }
         }
     }, [countRound])
 

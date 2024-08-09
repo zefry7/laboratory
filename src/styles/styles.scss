@@ -1,5 +1,6 @@
 @import "./null-style";
-@import "../Layout/Header/header";
+@import "../Components/Layout/Header/header";
+@import "../Components/Intro/intro";
 @import "../Components/Tictac/tictactoe";
 
 :root {
@@ -13,4 +14,24 @@ body {
 
 #root {
     margin: 0 auto;
+}
+
+.style-button {
+    height: 60px;
+    font-size: 24px;
+    background-color: var(--black-1);
+    border-radius: 10px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: all linear 0.15s;
+    border: 3px solid transparent;
+    &:hover {
+        background: white;
+        border-color: var(--black-1);
+        color: var(--black-1);
+    }
+
+    &:active {
+        transform: translateY(3px);
+    }
 }

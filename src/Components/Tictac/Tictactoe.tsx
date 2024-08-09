@@ -73,7 +73,7 @@ function Tictactoe() {
                 dispath({ type: ActionsTictac.ADD_ROUND, value: round })
             }, 1000)
         }
-    }, [grid])
+    }, [grid, winner])
 
     const handleRestart = useCallback((e) => {
         e.stopPropagation()

@@ -14,10 +14,27 @@
     }
 
     &__logo {
+        margin-bottom: 10px;
         font-size: 28px;
         font-weight: 200;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color: var(--black-1);
+        cursor: pointer;
+    }
+
+    &__line {
+        margin-bottom: 20px;
+        height: 2px;
+        background-color: var(--black-1);
+    }
+
+    &__section-button {
+        font-weight: 700;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        background-color: transparent;
+        font-size: 20px;
+        text-align: left;
+        width: 100%;
     }
 
     &__menu-button {
