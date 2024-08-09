@@ -11,6 +11,9 @@ function Tictactoe() {
     const grid = useSelector<RootState, Number[]>(state => state.tictac.grid)
     const stopMove = useSelector<RootState, boolean>(state => state.tictac.stopMove)
     const winner = useSelector<RootState, String>(state => state.tictac.winner)
+    const round = useSelector<RootState, Number>(state => state.tictac.round)
+    const stepMe = useSelector<RootState, Number>(state => state.tictac.stepMe)
+    const stepBot = useSelector<RootState, Number>(state => state.tictac.stepBot)
     const refTimeoutBot = useRef<TimeoutType>(null)
     const emptyCell = grid.filter(v => v == 0).length || 0
 
@@ -38,25 +41,37 @@ function Tictactoe() {
                 dispath({ type: ActionsTictac.EDIT_WINNER, winner: textWin })
             }
         }
-        watcherWin(1, "Ваша")
-        watcherWin(-1, "Бота")
+        let a = grid.filter(v => v == 1).length
+        if(a == 3) {
+            watcherWin(1, "Ваша")
+        }
+        let b = grid.filter(v => v == -1).length
+        if(b == 3) {
+            watcherWin(-1, "Бота")
+        }
     }, [grid])
 
     const handleStep = useCallback((index) => {
+        dispath({ type: ActionsTictac.ADD_STEP_ME, value: stepMe})
         dispath({ type: ActionsTictac.STOP_MOVE, value: true })
         dispath({ type: ActionsTictac.EDIT_GRID, index: index, move: 1 })
+
         refTimeoutBot.current = setTimeout(() => {
             dispath({ type: ActionsTictac.STOP_MOVE, value: false })
+            dispath({ type: ActionsTictac.ADD_STEP_BOT, value: stepBot})
             const arr = grid.reduce((acc: Number[], v, i) => v == 0 && i != index ? [...acc, i] : acc, [])
-            const stepBot = Math.floor(Math.random() * (arr.length - 1))
-            dispath({ type: ActionsTictac.EDIT_GRID, index: arr[stepBot], move: -1 })
+            const indexBot = Math.floor(Math.random() * (arr.length - 1))
+            dispath({ type: ActionsTictac.EDIT_GRID, index: arr[indexBot], move: -1 })
+            dispath({ type: ActionsTictac.ADD_ROUND, value: round })
         }, 1000)
+
     }, [grid])
 
     const handleRestart = useCallback((e) => {
         e.stopPropagation()
         if (refTimeoutBot.current) clearTimeout(refTimeoutBot.current)
         dispath({ type: ActionsTictac.CLEAR_GRID })
+        dispath({ type: ActionsTictac.ADD_ROUND, value: 0 })
         dispath({ type: ActionsTictac.EDIT_WINNER, winner: "" })
         dispath({ type: ActionsTictac.STOP_MOVE, value: false })
     }, [])
@@ -64,13 +79,20 @@ function Tictactoe() {
     return <section className="tictac">
         <div className="tictac__wrapper">
             <div className="tictac__content">
+                <h2 className="tictac__count-round">Количество раундов: {round.toString()}</h2>
                 {winner != "" &&
                     <h2 className="tictac__title">Победа: {winner}</h2>
                 }
                 <div className="tictac__field">
-                    {grid.map((_, i) => (
-                        <Cell key={i} grid={grid} changeGrid={handleStep} index={i} blockStep={stopMove} />
-                    ))}
+                    <Cell key={0} grid={grid} changeGrid={handleStep} index={0} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={1} grid={grid} changeGrid={handleStep} index={1} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={2} grid={grid} changeGrid={handleStep} index={2} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={3} grid={grid} changeGrid={handleStep} index={3} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={4} grid={grid} changeGrid={handleStep} index={4} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={5} grid={grid} changeGrid={handleStep} index={5} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={6} grid={grid} changeGrid={handleStep} index={6} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={7} grid={grid} changeGrid={handleStep} index={7} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
+                    <Cell key={8} grid={grid} changeGrid={handleStep} index={8} blockStep={stopMove} countRound={round} stepMe={stepMe} stepBot={stepBot}/>
                 </div>
                 {(emptyCell == 0 || winner != "") &&
                     <button className="tictac__button-restart" onClick={(e) => handleRestart(e)}>Restart</button>

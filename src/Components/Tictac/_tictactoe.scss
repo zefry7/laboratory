@@ -12,11 +12,19 @@
         flex-direction: column;
         align-items: center;
     }
+    &__count-round {
+        margin-bottom: 30px;
+        font-size: 30px;
+        font-weight: 700;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        animation: opacity-zero linear 0.15s forwards;
+    }
     &__title {
         margin-bottom: 30px;
         font-size: 30px;
         font-weight: 700;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        animation: opacity-zero linear 0.15s forwards;
     }
     &__field {
         margin-bottom: 20px;
@@ -37,11 +45,17 @@
         background-color: white;
         padding: 10px;
         cursor: pointer;
+        &-content {
+            opacity: 0;
+            transition: opacity linear 0.15s;
+        }
+
         &-o {
-            border: 12px solid var(--black-1);
+            border: 10px solid var(--black-1);
             border-radius: 100%;
             height: 100%;
             width: 100%;
+            opacity: 1;
         }
 
         &-x {
@@ -51,6 +65,7 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            opacity: 1;
             span {
                 position: absolute;
                 display: inline-block;
@@ -79,8 +94,18 @@
         color: white;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         transition: transform linear 0.15s;
+        animation: opacity-zero linear 0.15s forwards;
         &:active {
             transform: translateY(3px);
         }
+    }
+}
+
+@keyframes opacity-zero {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

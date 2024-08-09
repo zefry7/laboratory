@@ -1,27 +1,72 @@
-import React, { useCallback } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ActionsTictac } from "../../store/reducerTictac/reducerTictac.ts";
+import { RootState } from "../../store/store.ts";
 
-function Cell({ grid, changeGrid, index, blockStep }) {
+function Cell({ grid, changeGrid, index, blockStep, countRound, stepMe, stepBot }) {
+    const refCell = useRef<HTMLDivElement>(null)
+    const [active, setActive] = useState(4)
+    const dispath = useDispatch()
+    let classCell = "tictac__cell-content"
 
-    const handleClickO = useCallback((e) => {
+    if (grid[index] != 0) {
+        if (grid[index] == 1) {
+            classCell = "tictac__cell-content tictac__cell-o"
+        } else {
+            classCell = "tictac__cell-content tictac__cell-x"
+        }
+    }
+
+    const handleClickO = (e) => {
         e.stopPropagation()
         if (!blockStep) {
             changeGrid(index)
         }
-    }, [blockStep, changeGrid])
+    }
+
+    useEffect(() => {
+        if (refCell.current) {
+            refCell.current.style.opacity = (0.33 * active).toString()
+        }
+    }, [active])
+
+
+    useEffect(() => {
+        if (grid[index] == 1) {
+            setActive(n => n - 1)
+            if (active <= 1) {
+                setActive(4)
+                dispath({ type: ActionsTictac.EDIT_GRID, index: index, move: 0 })
+            }
+        } 
+    }, [stepMe])
+
+    useEffect(() => {
+        if (grid[index] == -1) {
+            setActive(n => n - 1)
+            if (active <= 1) {
+                setActive(4)
+                dispath({ type: ActionsTictac.EDIT_GRID, index: index, move: 0 })
+            }
+        } 
+    }, [stepBot])
+
+    useEffect(() => {
+        if(countRound == 1) {
+            setActive(4)
+        }
+    }, [countRound])
 
     return <div className="tictac__cell" onClick={(e) => handleClickO(e)}>
-        {grid[index] != 0 &&
-            <>
-                {grid[index] == 1
-                    ? <div className="tictac__cell-o"></div>
-                    : <div className="tictac__cell-x">
-                        <span></span>
-                        <span></span>
-                    </div>
-                }
-            </>
-        }
+        <div className={classCell} ref={refCell}>
+            {grid[index] == -1 &&
+                <>
+                    <span></span>
+                    <span></span>
+                </>
+            }
+        </div>
     </div>
 }
 
-export default Cell
+export default memo(Cell)

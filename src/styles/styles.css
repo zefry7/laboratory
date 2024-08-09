@@ -140,11 +140,19 @@ select {
   flex-direction: column;
   align-items: center;
 }
+.tictac__count-round {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  animation: opacity-zero linear 0.15s forwards;
+}
 .tictac__title {
   margin-bottom: 30px;
   font-size: 30px;
   font-weight: 700;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  animation: opacity-zero linear 0.15s forwards;
 }
 .tictac__field {
   margin-bottom: 20px;
@@ -166,11 +174,16 @@ select {
   padding: 10px;
   cursor: pointer;
 }
+.tictac__cell-content {
+  opacity: 0;
+  transition: opacity linear 0.15s;
+}
 .tictac__cell-o {
-  border: 12px solid var(--black-1);
+  border: 10px solid var(--black-1);
   border-radius: 100%;
   height: 100%;
   width: 100%;
+  opacity: 1;
 }
 .tictac__cell-x {
   height: 100%;
@@ -179,6 +192,7 @@ select {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  opacity: 1;
 }
 .tictac__cell-x span {
   position: absolute;
@@ -205,11 +219,20 @@ select {
   color: white;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   transition: transform linear 0.15s;
+  animation: opacity-zero linear 0.15s forwards;
 }
 .tictac__button-restart:active {
   transform: translateY(3px);
 }
 
+@keyframes opacity-zero {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 :root {
   --black-1: #222222;
 }
