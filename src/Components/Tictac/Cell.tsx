@@ -5,15 +5,16 @@ import { RootState } from "../../store/store.ts";
 
 function Cell({ grid, changeGrid, index, blockStep, countRound, stepMe, stepBot }) {
     const refCell = useRef<HTMLDivElement>(null)
+    const refWrapperCell = useRef<HTMLDivElement>(null)
     const [active, setActive] = useState(4)
     const dispath = useDispatch()
-    let classCell = "tictac__cell-content"
+    let classCell = ""
 
     if (grid[index] != 0) {
         if (grid[index] == 1) {
-            classCell = "tictac__cell-content tictac__cell-o"
+            classCell = "tictac__cell-o"
         } else {
-            classCell = "tictac__cell-content tictac__cell-x"
+            classCell = "tictac__cell-x"
         }
     }
 
@@ -34,37 +35,45 @@ function Cell({ grid, changeGrid, index, blockStep, countRound, stepMe, stepBot 
     useEffect(() => {
         if (grid[index] == 1) {
             setActive(n => n - 1)
+            if(refWrapperCell.current) {
+                refWrapperCell.current.classList.add("tictac__cell-wrapper_active")
+            }
             if (active <= 1) {
                 setActive(4)
                 dispath({ type: ActionsTictac.EDIT_GRID, index: index, move: 0 })
             }
-        } 
+        }
     }, [stepMe])
 
     useEffect(() => {
         if (grid[index] == -1) {
             setActive(n => n - 1)
+            if(refWrapperCell.current) {
+                refWrapperCell.current.classList.add("tictac__cell-wrapper_active")
+            }
             if (active <= 1) {
                 setActive(4)
                 dispath({ type: ActionsTictac.EDIT_GRID, index: index, move: 0 })
             }
-        } 
+        }
     }, [stepBot])
 
     useEffect(() => {
-        if(countRound == 1) {
+        if (countRound == 1) {
             setActive(4)
         }
     }, [countRound])
 
     return <div className="tictac__cell" onClick={(e) => handleClickO(e)}>
-        <div className={classCell} ref={refCell}>
-            {grid[index] == -1 &&
-                <>
-                    <span></span>
-                    <span></span>
-                </>
-            }
+        <div className="tictac__cell-wrapper" ref={refWrapperCell}>
+            <div className={classCell} ref={refCell}>
+                {grid[index] == -1 &&
+                    <>
+                        <span></span>
+                        <span></span>
+                    </>
+                }
+            </div>
         </div>
     </div>
 }

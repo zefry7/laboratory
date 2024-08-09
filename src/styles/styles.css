@@ -139,23 +139,15 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  top: 60px;
+  height: 530px;
 }
-.tictac__count-round {
-  margin-bottom: 30px;
-  font-size: 30px;
-  font-weight: 700;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  animation: opacity-zero linear 0.15s forwards;
-}
-.tictac__title {
-  margin-bottom: 30px;
-  font-size: 30px;
-  font-weight: 700;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  animation: opacity-zero linear 0.15s forwards;
+.tictac__content_restart .tictac__button-restart {
+  animation: opacity-one linear 0.1s forwards;
 }
 .tictac__field {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-radius: 17px;
   height: 440px;
   width: 440px;
@@ -167,6 +159,16 @@ select {
   grid-template-columns: repeat(3, minmax(auto, 120px));
   gap: 10px;
 }
+.tictac__field_rotate {
+  transform: rotateY(180deg);
+  transition: transform linear 0.3s;
+}
+.tictac__field_win {
+  box-shadow: 0px 0px 20px 7px rgb(97, 201, 97);
+}
+.tictac__field_lose {
+  box-shadow: 0px 0px 20px 7px rgb(201, 97, 97);
+}
 .tictac__cell {
   height: 120px;
   width: 120px;
@@ -174,16 +176,21 @@ select {
   padding: 10px;
   cursor: pointer;
 }
-.tictac__cell-content {
+.tictac__cell-wrapper {
+  width: 100%;
+  height: 100%;
   opacity: 0;
   transition: opacity linear 0.15s;
+}
+.tictac__cell-wrapper_active {
+  opacity: 1;
 }
 .tictac__cell-o {
   border: 10px solid var(--black-1);
   border-radius: 100%;
   height: 100%;
   width: 100%;
-  opacity: 1;
+  transition: opacity linear 0.15s;
 }
 .tictac__cell-x {
   height: 100%;
@@ -192,7 +199,7 @@ select {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  opacity: 1;
+  transition: opacity linear 0.15s;
 }
 .tictac__cell-x span {
   position: absolute;
@@ -211,15 +218,21 @@ select {
   transform: rotateZ(-45deg) translateY(50%);
 }
 .tictac__button-restart {
-  width: 240px;
+  width: 440px;
   height: 60px;
   font-size: 24px;
   background-color: var(--black-1);
   border-radius: 10px;
   color: white;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  transition: transform linear 0.15s;
+  transition: all linear 0.15s;
   animation: opacity-zero linear 0.15s forwards;
+  border: 3px solid transparent;
+}
+.tictac__button-restart:hover {
+  background: white;
+  border-color: var(--black-1);
+  color: var(--black-1);
 }
 .tictac__button-restart:active {
   transform: translateY(3px);
@@ -231,6 +244,14 @@ select {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes opacity-one {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 :root {

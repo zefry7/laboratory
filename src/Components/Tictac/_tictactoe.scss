@@ -11,23 +11,17 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    &__count-round {
-        margin-bottom: 30px;
-        font-size: 30px;
-        font-weight: 700;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        animation: opacity-zero linear 0.15s forwards;
-    }
-    &__title {
-        margin-bottom: 30px;
-        font-size: 30px;
-        font-weight: 700;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        animation: opacity-zero linear 0.15s forwards;
+        position: relative;
+        top: 60px;
+        height: 530px;
+        &_restart {
+            .tictac__button-restart {
+                animation: opacity-one linear 0.1s forwards;
+            }
+        }
     }
     &__field {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         border-radius: 17px;
         height: 440px;
         width: 440px;
@@ -38,6 +32,19 @@
         display: grid;
         grid-template-columns: repeat(3, minmax(auto, 120px));
         gap: 10px;
+
+        &_rotate {
+            transform: rotateY(180deg);
+            transition: transform linear 0.3s;
+        }
+
+        &_win {
+            box-shadow: 0px 0px 20px 7px rgb(97, 201, 97);
+        }
+
+        &_lose {
+            box-shadow: 0px 0px 20px 7px rgb(201, 97, 97);
+        }
     }
     &__cell {
         height: 120px;
@@ -45,9 +52,16 @@
         background-color: white;
         padding: 10px;
         cursor: pointer;
-        &-content {
+
+        &-wrapper {
+            width: 100%;
+            height: 100%;
             opacity: 0;
             transition: opacity linear 0.15s;
+
+            &_active {
+                opacity: 1;
+            }
         }
 
         &-o {
@@ -55,7 +69,7 @@
             border-radius: 100%;
             height: 100%;
             width: 100%;
-            opacity: 1;
+            transition: opacity linear 0.15s;
         }
 
         &-x {
@@ -65,7 +79,7 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            opacity: 1;
+            transition: opacity linear 0.15s;
             span {
                 position: absolute;
                 display: inline-block;
@@ -86,15 +100,22 @@
     }
 
     &__button-restart {
-        width: 240px;
+        width: 440px;
         height: 60px;
         font-size: 24px;
         background-color: var(--black-1);
         border-radius: 10px;
         color: white;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        transition: transform linear 0.15s;
+        transition: all linear 0.15s;
         animation: opacity-zero linear 0.15s forwards;
+        border: 3px solid transparent;
+        &:hover {
+            background: white;
+            border-color: var(--black-1);
+            color: var(--black-1);
+        }
+
         &:active {
             transform: translateY(3px);
         }
@@ -107,5 +128,14 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes opacity-one {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
