@@ -1,11 +1,13 @@
+/** @format */
+
 import { combineReducers, createStore } from "redux";
 import reducerTictac from "./reducerTictac/reducerTictac.ts";
 
 const rootReducer = combineReducers({
-    tictac: reducerTictac
-})
+	tictac: reducerTictac,
+});
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer);
 
 export type RootState = ReturnType<typeof store.getState>;
-export default store
+export default store;

@@ -3,25 +3,33 @@
     margin: 0;
     border: 0;
     -webkit-tap-highlight-color: transparent;
-  }
-  
-  *, *:before, *:after {
+}
+
+*,
+*:before,
+*:after {
     box-sizing: border-box;
-  }
-  
-  :focus, :active {
+}
+
+:focus,
+:active {
     outline: none;
-  }
-  
-  a:focus, a:active {
+}
+
+a:focus,
+a:active {
     outline: none;
-  }
-  
-  nav, footer, header, aside {
+}
+
+nav,
+footer,
+header,
+aside {
     display: block;
-  }
-  
-  html, body {
+}
+
+html,
+body {
     height: 100%;
     width: 100%;
     font-style: 100%;
@@ -30,61 +38,69 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-  }
-  
-  input, button, textarea {
+}
+
+input,
+button,
+textarea {
     font-family: inherit;
-  }
-  
-  input::-ms-clear {
+}
+
+input::-ms-clear {
     display: none;
-  }
-  
-  button {
+}
+
+button {
     cursor: pointer;
-  }
-  
-  button::-moz-focus-inner {
+}
+
+button::-moz-focus-inner {
     padding: 0;
     border: 0;
-  }
-  
-  a, a:visited {
+}
+
+a,
+a:visited {
     text-decoration: none;
     color: initial;
     cursor: pointer;
-  }
-  
-  a:hover {
+}
+
+a:hover {
     text-decoration: none;
     color: currentColor;
-  }
-  
-  ul li {
+}
+
+ul li {
     list-style-type: none;
-  }
-  
-  img {
+}
+
+img {
     vertical-align: top;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-style: inherit;
     font-weight: 400;
     cursor: default;
-  }
+}
 
-  p {
+p {
     cursor: default;
-  }
+}
 
-  address {
+address {
     font-style: normal;
-  }
+}
 
-  select { 
+select {
     font: inherit;
     letter-spacing: inherit;
     word-spacing: inherit;
     appearance: none;
-  }
+}

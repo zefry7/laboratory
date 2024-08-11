@@ -1,84 +1,104 @@
+/** @format */
+
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionsTictac } from "../../store/reducerTictac/reducerTictac.ts";
 import { RootState } from "../../store/store.ts";
 
 function Cell({ grid, changeGrid, index, blockStep, countRound, stepMe, stepBot }) {
-    const refCell = useRef<HTMLDivElement>(null)
-    const refWrapperCell = useRef<HTMLDivElement>(null)
-    const [active, setActive] = useState(4)
-    const dispath = useDispatch()
-    let classCell = ""
+	const refCell = useRef<HTMLDivElement>(null);
+	const refWrapperCell = useRef<HTMLDivElement>(null);
+	const [active, setActive] = useState(4);
+	const dispath = useDispatch();
+	let classCell = "";
 
-    if (grid[index] != 0) {
-        if (grid[index] == 1) {
-            classCell = "tictac__cell-o"
-        } else {
-            classCell = "tictac__cell-x"
-        }
-    }
+	if (grid[index] != 0) {
+		if (grid[index] == 1) {
+			classCell = "tictac__cell-o";
+		} else {
+			classCell = "tictac__cell-x";
+		}
+	}
 
-    const handleClickO = (e) => {
-        e.stopPropagation()
-        if (!blockStep) {
-            changeGrid(index)
-        }
-    }
+	const handleClickO = (e) => {
+		e.stopPropagation();
+		if (!blockStep) {
+			changeGrid(index);
+		}
+	};
 
-    useEffect(() => {
-        if (refCell.current) {
-            refCell.current.style.opacity = (0.33 * active).toString()
-        }
-    }, [active])
+	useEffect(() => {
+		if (refCell.current) {
+			refCell.current.style.opacity = (0.33 * active).toString();
+		}
+	}, [active]);
 
+	useEffect(() => {
+		if (grid[index] == 1) {
+			setActive((n) => n - 1);
+			if (refWrapperCell.current) {
+				refWrapperCell.current.classList.add("tictac__cell-wrapper_active");
+			}
+			if (active <= 1) {
+				setActive(4);
+				dispath({
+					type: ActionsTictac.EDIT_GRID,
+					index: index,
+					move: 0,
+				});
+			}
+		}
+	}, [stepMe]);
 
-    useEffect(() => {
-        if (grid[index] == 1) {
-            setActive(n => n - 1)
-            if(refWrapperCell.current) {
-                refWrapperCell.current.classList.add("tictac__cell-wrapper_active")
-            }
-            if (active <= 1) {
-                setActive(4)
-                dispath({ type: ActionsTictac.EDIT_GRID, index: index, move: 0 })
-            }
-        }
-    }, [stepMe])
+	useEffect(() => {
+		if (grid[index] == -1) {
+			setActive((n) => n - 1);
+			if (refWrapperCell.current) {
+				refWrapperCell.current.classList.add("tictac__cell-wrapper_active");
+			}
+			if (active <= 1) {
+				setActive(4);
+				dispath({
+					type: ActionsTictac.EDIT_GRID,
+					index: index,
+					move: 0,
+				});
+			}
+		}
+	}, [stepBot]);
 
-    useEffect(() => {
-        if (grid[index] == -1) {
-            setActive(n => n - 1)
-            if(refWrapperCell.current) {
-                refWrapperCell.current.classList.add("tictac__cell-wrapper_active")
-            }
-            if (active <= 1) {
-                setActive(4)
-                dispath({ type: ActionsTictac.EDIT_GRID, index: index, move: 0 })
-            }
-        }
-    }, [stepBot])
+	useEffect(() => {
+		if (countRound == 1) {
+			setActive(4);
+			if (refWrapperCell.current) {
+				refWrapperCell.current.classList.remove("tictac__cell-wrapper_active");
+			}
+		}
+	}, [countRound]);
 
-    useEffect(() => {
-        if (countRound == 1) {
-            setActive(4)
-            if(refWrapperCell.current) {
-                refWrapperCell.current.classList.remove("tictac__cell-wrapper_active")
-            }
-        }
-    }, [countRound])
-
-    return <div className="tictac__cell" onClick={(e) => handleClickO(e)}>
-        <div className="tictac__cell-wrapper" ref={refWrapperCell}>
-            <div className={classCell} ref={refCell}>
-                {grid[index] == -1 &&
-                    <>
-                        <span></span>
-                        <span></span>
-                    </>
-                }
-            </div>
-        </div>
-    </div>
+	return (
+		<div
+			className="tictac__cell"
+			onClick={(e) => handleClickO(e)}
+		>
+			<div
+				className="tictac__cell-wrapper"
+				ref={refWrapperCell}
+			>
+				<div
+					className={classCell}
+					ref={refCell}
+				>
+					{grid[index] == -1 && (
+						<>
+							<span></span>
+							<span></span>
+						</>
+					)}
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default memo(Cell)
+export default memo(Cell);

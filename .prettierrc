@@ -1,0 +1,12 @@
+{
+	"semi": true,
+	"tabWidth": 4,
+	"singleQuote": false,
+	"printWidth": 120,
+	"useTabs": true,
+	"jsxSingleQuote": false,
+	"jsxBracketSameLine": true,
+	"requirePragma": true,
+	"insertPragma": false,
+	"singleAttributePerLine": true
+}

@@ -2,14 +2,18 @@
 @import "../Components/Layout/Header/header";
 @import "../Components/Intro/intro";
 @import "../Components/Tictac/tictactoe";
+@import "../Components/Two/two";
 
 :root {
     --black-1: #222222;
+    --gray-1: #696969;
 }
 
+* { 
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
 
 body {
-    
 }
 
 #root {
@@ -22,7 +26,6 @@ body {
     background-color: var(--black-1);
     border-radius: 10px;
     color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     transition: all linear 0.15s;
     border: 3px solid transparent;
     &:hover {
@@ -33,5 +36,20 @@ body {
 
     &:active {
         transform: translateY(3px);
+    }
+}
+
+header,
+section {
+    animation: open-section 0.5s ease-in forwards;
+}
+
+
+@keyframes open-section {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
