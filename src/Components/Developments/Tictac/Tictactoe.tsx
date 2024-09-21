@@ -3,8 +3,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Cell from "./Cell.tsx";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store.ts";
-import { ActionsTictac } from "../../store/reducerTictac/reducerTictac.ts";
+import { RootState } from "../../../store/store.ts";
+import { ActionsTictac } from "../../../store/reducerTictac/reducerTictac.ts";
 
 type TimeoutType = number | null | NodeJS.Timeout;
 
@@ -156,14 +156,14 @@ function Tictactoe() {
 	}, []);
 
 	return (
-		<section className="tictac">
-			<div className="tictac__wrapper">
+		<section className="h-screen">
+			<div className="flex items-center h-full">
 				<div
-					className="tictac__content"
+					className="flex flex-col items-center relative mx-auto h-[530px]"
 					ref={refElementContent}
 				>
 					<div
-						className="tictac__field"
+						className="mb-[30px] rounded-[17px] h-[440px] w-[440px] border-[10px] border-black-1 bg-black-1 bg-clip-content p-[20px] grid grid-cols-3 gap-[10px]"
 						ref={refElementField}
 					>
 						<Cell
@@ -259,10 +259,10 @@ function Tictactoe() {
 					</div>
 					{(emptyCell == 0 || winner != "") && (
 						<button
-							className="tictac__button-restart"
+							className="style-button w-[440px] animate-opacity-zero"
 							onClick={(e) => handleRestart(e)}
 						>
-							Restart
+							Перезапуск
 						</button>
 					)}
 				</div>

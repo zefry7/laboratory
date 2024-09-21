@@ -2,10 +2,9 @@
 	"semi": true,
 	"tabWidth": 4,
 	"singleQuote": false,
-	"printWidth": 120,
+	"printWidth": 200,
 	"useTabs": true,
 	"jsxSingleQuote": false,
-	"jsxBracketSameLine": true,
 	"requirePragma": true,
 	"insertPragma": false,
 	"singleAttributePerLine": true

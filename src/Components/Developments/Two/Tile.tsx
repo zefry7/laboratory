@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 function Tile({ pos }) {
     const refTile = useRef<HTMLDivElement>(null)
     const [posX, setPosX] = useState(pos.x)
     const [posY, setPosY] = useState(pos.y)
+    const [keyDown, setKeyDown] = useState(true)
 
-    useEffect(() => {
-        window.addEventListener("keydown", (e) => {
+    const handleKeyDown = useCallback((e) => {
+        if(keyDown) {
+            setKeyDown(false)
             if(e.key == "w") {
                 setPosY(1)
             } else if(e.key == "s") {
@@ -16,8 +18,17 @@ function Tile({ pos }) {
             } else if(e.key == "d") {
                 setPosX(4)
             }
-        })
-    }, [])
+            setTimeout(() => {
+                setKeyDown(true)
+            }, 100)
+        }
+    }, [keyDown])
+    
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown)
+        return () => document.removeEventListener("keydown", handleKeyDown)
+    }, [handleKeyDown])
 
     useEffect(() => {
         setPosX(pos.x)

@@ -2,8 +2,8 @@
 
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionsTictac } from "../../store/reducerTictac/reducerTictac.ts";
-import { RootState } from "../../store/store.ts";
+import { ActionsTictac } from "../../../store/reducerTictac/reducerTictac.ts";
+import { RootState } from "../../../store/store.ts";
 
 function Cell({ grid, changeGrid, index, blockStep, countRound, stepMe, stepBot }) {
 	const refCell = useRef<HTMLDivElement>(null);
@@ -78,11 +78,11 @@ function Cell({ grid, changeGrid, index, blockStep, countRound, stepMe, stepBot 
 
 	return (
 		<div
-			className="tictac__cell"
+			className="w-[120px] h-[120px] bg-white p-[10px] cursor-pointer"
 			onClick={(e) => handleClickO(e)}
 		>
 			<div
-				className="tictac__cell-wrapper"
+				className="w-full h-full opacity-0 transition-opacity"
 				ref={refWrapperCell}
 			>
 				<div

@@ -1,14 +1,15 @@
 /** @format */
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Header from "./Header/Header.tsx";
-import Tictactoe from "../Tictac/Tictactoe.tsx";
-import Intro from "../Intro/Intro.tsx";
-import Two from "../Two/Two.tsx";
+import Tictactoe from "../Developments/Tictac/Tictactoe.tsx";
+import Intro from "../Developments/Intro/Intro.tsx";
+import Two from "../Developments/Two/Two.tsx";
 
 function Layout() {
-	const [section, setSection] = useState("intro");
-
+	const [section, setSection] = useState("");
+	const refHeader = useRef<HTMLHeadingElement>(null);
+	
 	const handleSelectSection = useCallback((e: MouseEvent, nameSection) => {
 		e.stopPropagation();
 		setSection(nameSection);
@@ -16,20 +17,18 @@ function Layout() {
 
 	const viewSection = () => {
 		switch (section) {
-			case "intro":
-				return <Intro />;
 			case "tic-tac-toe":
 				return <Tictactoe />;
-			case "two": 
+			case "two":
 				return <Two />;
 			default:
-				return <Intro />;
+				return <Intro refHeader={refHeader}/>;
 		}
 	};
 
 	return (
 		<>
-			<Header handleSelectSection={handleSelectSection} />
+			<Header handleSelectSection={handleSelectSection} refHeader={refHeader} />
 			<main>{viewSection()}</main>
 		</>
 	);
