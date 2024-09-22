@@ -5,6 +5,7 @@ import Header from "./Header/Header.tsx";
 import Tictactoe from "../Developments/Tictac/Tictactoe.tsx";
 import Intro from "../Developments/Intro/Intro.tsx";
 import Two from "../Developments/Two/Two.tsx";
+import Pixel from "../Developments/Pixel/Pixel.tsx";
 
 function Layout() {
 	const [section, setSection] = useState("");
@@ -21,6 +22,8 @@ function Layout() {
 				return <Tictactoe />;
 			case "two":
 				return <Two />;
+			case "pixel":
+				return <Pixel />
 			default:
 				return <Intro refHeader={refHeader}/>;
 		}

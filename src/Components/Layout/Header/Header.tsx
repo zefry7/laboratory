@@ -11,6 +11,10 @@ const links = [
 		text: "2048",
 		id: "two",
 	},
+	{
+		text: "Pixel",
+		id: "pixel",
+	},
 ];
 
 function Header({ handleSelectSection, refHeader }) {

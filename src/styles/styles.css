@@ -526,10 +526,13 @@ header,
 .style-button {
         height: 60px;
         font-size: 24px;
+        line-height: 60px;
         border-radius: 10px;
         transition: all linear 0.3s;
         border: 2px solid transparent;
         text-transform: uppercase;
+        text-align: center;
+        cursor: pointer;
         --tw-bg-opacity: 1;
         background-color: rgb(34 34 34 / var(--tw-bg-opacity));
         --tw-text-opacity: 1;
@@ -598,8 +601,14 @@ header,
 .relative {
   position: relative;
 }
+.bottom-\[20px\] {
+  bottom: 20px;
+}
 .left-\[-300px\] {
   left: -300px;
+}
+.left-\[50\%\] {
+  left: 50%;
 }
 .right-\[-50px\] {
   right: -50px;
@@ -638,8 +647,14 @@ header,
 .h-\[2px\] {
   height: 2px;
 }
+.h-\[40px\] {
+  height: 40px;
+}
 .h-\[440px\] {
   height: 440px;
+}
+.h-\[45px\] {
+  height: 45px;
 }
 .h-\[50px\] {
   height: 50px;
@@ -656,11 +671,17 @@ header,
 .w-\[120px\] {
   width: 120px;
 }
+.w-\[250px\] {
+  width: 250px;
+}
 .w-\[300px\] {
   width: 300px;
 }
 .w-\[440px\] {
   width: 440px;
+}
+.w-\[45px\] {
+  width: 45px;
 }
 .w-\[50px\] {
   width: 50px;
@@ -670,6 +691,25 @@ header,
 }
 .w-max {
   width: max-content;
+}
+.w-\[2520px\] {
+  width: 2520px;
+}
+.w-\[220px\] {
+  width: 220px;
+}
+.w-\[152px\] {
+  width: 152px;
+}
+.w-\[150px\] {
+  width: 150px;
+}
+.w-\[140px\] {
+  width: 140px;
+}
+.translate-x-\[-50\%\] {
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .animate-opacity-zero {
   animation: opacity-zero linear 0.15s forwards;
@@ -689,11 +729,23 @@ header,
 .justify-center {
   justify-content: center;
 }
+.justify-between {
+  justify-content: space-between;
+}
 .gap-\[10px\] {
   gap: 10px;
 }
 .rounded-\[17px\] {
   border-radius: 17px;
+}
+.rounded-\[20px\] {
+  border-radius: 20px;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.rounded-\[10px\] {
+  border-radius: 10px;
 }
 .rounded-br-\[15px\] {
   border-bottom-right-radius: 15px;
@@ -704,8 +756,18 @@ header,
 .border-\[10px\] {
   border-width: 10px;
 }
+.border-\[2px\] {
+  border-width: 2px;
+}
+.border-\[20px\] {
+  border-width: 20px;
+}
 .border-r-\[2px\] {
   border-right-width: 2px;
+}
+.border-\[\#808080\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(128 128 128 / var(--tw-border-opacity));
 }
 .border-black-1 {
   --tw-border-opacity: 1;
@@ -714,6 +776,9 @@ header,
 .border-r-black-1 {
   --tw-border-opacity: 1;
   border-right-color: rgb(34 34 34 / var(--tw-border-opacity));
+}
+.bg-\[var\(--bg-c1\)\] {
+  background-color: var(--bg-c1);
 }
 .bg-black-1 {
   --tw-bg-opacity: 1;
@@ -738,6 +803,26 @@ header,
 .p-\[40px\] {
   padding: 40px;
 }
+.px-\[30px\] {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.py-\[20px\] {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.px-\[25px\] {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.px-\[2\=0px\] {
+  padding-left: 2=0px;
+  padding-right: 2=0px;
+}
 .text-left {
   text-align: left;
 }
@@ -747,11 +832,19 @@ header,
 .text-\[20px\] {
   font-size: 20px;
 }
+.text-\[20px\]\/\[40px\] {
+  font-size: 20px;
+  line-height: 40px;
+}
 .text-\[28px\] {
   font-size: 28px;
 }
 .text-\[36px\] {
   font-size: 36px;
+}
+.text-\[20px\]\/\[35px\] {
+  font-size: 20px;
+  line-height: 35px;
 }
 .font-\[200\] {
   font-weight: 200;
@@ -759,12 +852,25 @@ header,
 .uppercase {
   text-transform: uppercase;
 }
+.capitalize {
+  text-transform: capitalize;
+}
 .text-black-1 {
   --tw-text-opacity: 1;
   color: rgb(34 34 34 / var(--tw-text-opacity));
 }
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 .opacity-0 {
   opacity: 0;
+}
+.opacity-100 {
+  opacity: 1;
+}
+.opacity-50 {
+  opacity: 0.5;
 }
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
