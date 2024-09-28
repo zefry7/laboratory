@@ -17,6 +17,9 @@ module.exports = {
         "opacity-zero": "opacity-zero linear 0.15s forwards",
         "opacity-one": "opacity-one linear 0.1s forwards",
         "open-section": "open-section 0.5s ease-in forwards",
+      },
+      backgroundImage: {
+        "arrow": "url('../img/arrow-left.svg')"
       }
     },
   },

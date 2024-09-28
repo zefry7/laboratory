@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 
 const links = [
 	{
@@ -18,17 +18,19 @@ const links = [
 ];
 
 function Header({ handleSelectSection, refHeader }) {
+	const [active, setActive] = useState(false)
 
 	const handleClickMenu = (e) => {
 		e.stopPropagation();
 		if (refHeader.current) {
-			refHeader.current.classList.toggle("header_visible");
+			refHeader.current.classList.toggle("header-visible");
+			setActive(true)
 		}
 	};
 
 	return (
 		<header
-			className={"z-50 absolute top-0 left-[-300px] transition-left duration-150 h-full"}
+			className={"z-50 absolute top-0 left-[-300px] transition-left duration-150 h-full bg-white group"}
 			ref={refHeader}
 		>
 			<div className="p-[40px] relative w-[300px] h-full border-r-[2px] border-r-black-1">
@@ -46,7 +48,7 @@ function Header({ handleSelectSection, refHeader }) {
 					{links?.map((link, key) => (
 						<button
 							key={key}
-							className="font-defaultFont bg-transparent text-[20px] text-left w-max transition-all hover:text-gray-1 active:translate-y-[3px]"
+							className={"font-defaultFont bg-transparent text-[20px] text-left w-max transition-all hover:text-gray-1 active:translate-y-[3px]"}
 							onClick={(e) => {
 								handleSelectSection(e, link.id);
 								handleClickMenu(e);
@@ -57,10 +59,12 @@ function Header({ handleSelectSection, refHeader }) {
 					))}
 				</nav>
 				<button
-					className="absolute h-[50px] w-[50px] right-[-50px] top-[5px] bg-black-1 rounded-tr-[15px] rounded-br-[15px]"
+					className={"absolute h-[50px] w-[50px] right-[-50px] top-[5px] rounded-tr-[15px] border-black-1 border-[2px] rounded-br-[15px]"}
 					aria-label="Открыть меню"
 					onClick={handleClickMenu}
-				></button>
+				>
+					<div className={"bg-arrow bg-cover h-full w-full transition-transform -rotate-180 duration-300 group-[.header-visible]:rotate-0 hover:scale-110"}></div>
+				</button>
 			</div>
 		</header>
 	);

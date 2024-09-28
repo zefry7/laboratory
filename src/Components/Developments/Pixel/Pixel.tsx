@@ -36,9 +36,9 @@ function createGrid(ctx) {
 }
 
 function formatNumber(number) {
-    if(number < 10) {
-        return "0" + number 
-    } 
+    if (number < 10) {
+        return "0" + number
+    }
     return "" + number
 }
 
@@ -57,13 +57,15 @@ function Pixel() {
             let ctx = refCanvas.current.getContext("2d")
 
             if (ctx) {
-                createGrid(ctx)
+                // createGrid(ctx)
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, widthCanvas, heightCanvas);
             }
 
             function getCursorPosition(canvas, event) {
                 const rect = canvas.getBoundingClientRect()
-                const x = Math.floor(event.clientX - rect.left)
-                const y = Math.floor(event.clientY - rect.top)
+                const x = Math.floor(Math.abs(event.clientX - rect.left))
+                const y = Math.floor(Math.abs(event.clientY - rect.top))
                 let coordX = Math.floor(x / 20) * 20
                 let coordY = Math.floor(y / 20) * 20
                 return [coordX, coordY]
@@ -79,32 +81,38 @@ function Pixel() {
                     ctx.lineTo(coordX + 20, coordY + 20)
                     ctx.lineTo(coordX, coordY + 20)
                     ctx.fillStyle = refColor.current
+                    ctx.lineWidth = 2
                     ctx.fill()
                     ctx.closePath();
                 }
+
+                detectedPixel(coordMouse)
             }
 
             function detectedPixel(coordMouse) {
                 let [coordX, coordY] = coordMouse
-                
+
                 if (ctx != null) {
+                    var imgData = ctx.getImageData(refDecectedX.current + 10, refDecectedY.current + 10, 1, 1);
+                    console.log(refDecectedX.current, refDecectedY.current, `rgb(${imgData.data[0].toString()}, ${imgData.data[1].toString()}, ${imgData.data[2].toString()})`);
+
                     ctx.beginPath()
-                    ctx.moveTo(refDecectedX.current, refDecectedY.current)
-                    ctx.lineTo(refDecectedX.current + 20, refDecectedY.current)
-                    ctx.lineTo(refDecectedX.current + 20, refDecectedY.current + 20)
-                    ctx.lineTo(refDecectedX.current, refDecectedY.current + 20)
+                    ctx.moveTo(refDecectedX.current + 1, refDecectedY.current + 1)
+                    ctx.lineTo(refDecectedX.current + 19, refDecectedY.current + 1)
+                    ctx.lineTo(refDecectedX.current + 19, refDecectedY.current + 19)
+                    ctx.lineTo(refDecectedX.current + 1, refDecectedY.current + 19)
                     ctx.closePath();
-                    ctx.strokeStyle = "#DCDCDC"
+                    ctx.strokeStyle = `rgb(${imgData.data[0].toString()}, ${imgData.data[1].toString()}, ${imgData.data[2].toString()})`
                     ctx.lineWidth = 2
                     ctx.stroke();
 
                     ctx.beginPath()
-                    ctx.moveTo(coordX, coordY)
-                    ctx.lineTo(coordX + 20, coordY)
-                    ctx.lineTo(coordX + 20, coordY + 20)
-                    ctx.lineTo(coordX, coordY + 20)
+                    ctx.moveTo(coordX + 1, coordY + 1)
+                    ctx.lineTo(coordX + 19, coordY + 1)
+                    ctx.lineTo(coordX + 19, coordY + 19)
+                    ctx.lineTo(coordX + 1, coordY + 19)
                     ctx.closePath();
-                    ctx.strokeStyle = "#F00"
+                    ctx.strokeStyle = "#12121255"
                     ctx.lineWidth = 2
                     ctx.stroke();
 
@@ -112,7 +120,7 @@ function Pixel() {
                     refDecectedY.current = coordY
                 }
 
-                setCoord([coordX/20 + 1, coordY/20 + 1])
+                setCoord([coordX / 20 + 1, coordY / 20 + 1])
             }
 
             refCanvas.current.addEventListener('mousedown', function (e) {
@@ -150,13 +158,13 @@ function Pixel() {
         if (refCanvas.current != null) {
             let ctx = refCanvas.current.getContext("2d")
             if (ctx) {
-                ctx.clearRect(0, 0, widthCanvas, heightCanvas)
-                createGrid(ctx)
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, widthCanvas, heightCanvas);
             }
         }
     }
 
-    return <div className="h-screen relative">
+    return <section className="h-screen relative">
         <div className="h-full flex justify-center items-center">
             <div className="">
                 <div className="flex justify-between mb-[10px]">
@@ -167,7 +175,7 @@ function Pixel() {
                     </div>
                 </div>
                 <div className="border-black-1 border-[20px] rounded-[20px]">
-                    <canvas ref={refCanvas} width={widthCanvas} height={heightCanvas} className="cursor-pointer" />
+                    <canvas ref={refCanvas} width={widthCanvas} height={heightCanvas} className="cursor-pointer bg-white" />
                 </div>
                 <div className="flex gap-[10px] bg-black-1 py-[20px] px-[30px] rounded-[20px] absolute bottom-[20px] left-[50%] translate-x-[-50%]">
                     {listDefaultColor.map((color) => {
@@ -178,7 +186,7 @@ function Pixel() {
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 }
 
 export default Pixel

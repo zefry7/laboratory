@@ -106,7 +106,7 @@
 }
 
 @layer utilities {
-    .header_visible {
+    .header-visible {
         @apply left-0;
     }
 
