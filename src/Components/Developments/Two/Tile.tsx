@@ -1,42 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
-function Tile({ pos }) {
+function Tile({ pos, count }) {
     const refTile = useRef<HTMLDivElement>(null)
-    const [posX, setPosX] = useState(pos.x)
-    const [posY, setPosY] = useState(pos.y)
-    const [keyDown, setKeyDown] = useState(true)
+    const [posX, setPosX] = useState(pos - 4 * Math.floor(pos / 4) + 1)
+    const [posY, setPosY] = useState(Math.floor(pos / 4) + 1)
 
-    const handleKeyDown = useCallback((e) => {
-        if(keyDown) {
-            setKeyDown(false)
-            if(e.key == "w") {
-                setPosY(1)
-            } else if(e.key == "s") {
-                setPosY(4)
-            } else if(e.key == "a") {
-                setPosX(1)
-            } else if(e.key == "d") {
-                setPosX(4)
-            }
-            setTimeout(() => {
-                setKeyDown(true)
-            }, 100)
-        }
-    }, [keyDown])
-    
-
-    useEffect(() => {
-        document.addEventListener("keydown", handleKeyDown)
-        return () => document.removeEventListener("keydown", handleKeyDown)
-    }, [handleKeyDown])
-
-    useEffect(() => {
-        setPosX(pos.x)
-        setPosY(pos.y)
+    useEffect(() => {  
+        setPosX(pos - 4 * Math.floor(pos / 4) + 1)
+        setPosY(Math.floor(pos / 4) + 1)
     }, [pos])
 
-    return <div className={"two__tile two__tile-position-" + posX + "-" + posY} ref={refTile}>
-        <p className="two__tile-text">2</p>
+    return <div className={`absolute h-[120px] w-[120px] bg-gray-1 flex items-center justify-center transition-all left-[var(--posX)] top-[var(--posY)]`} style={{"--posX": (posX - 1) * 140 + 20 + "px", "--posY": (posY - 1)  * 140 + 20 + "px"} as React.CSSProperties}  ref={refTile}>
+        <p className="text-[48px] font-bold">{count}</p>
     </div>
 }
 
