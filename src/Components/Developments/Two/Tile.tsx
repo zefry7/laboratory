@@ -10,8 +10,12 @@ function Tile({ pos, count }) {
         setPosY(Math.floor(pos / 4) + 1)
     }, [pos])
 
-    return <div className={`absolute h-[120px] w-[120px] bg-gray-1 flex items-center justify-center transition-all left-[var(--posX)] top-[var(--posY)]`} style={{"--posX": (posX - 1) * 140 + 20 + "px", "--posY": (posY - 1)  * 140 + 20 + "px"} as React.CSSProperties}  ref={refTile}>
-        <p className="text-[48px] font-bold">{count}</p>
+    useEffect(() => {
+        
+    }, [count])
+
+    return <div className={`absolute h-[120px] w-[120px] bg-[rgb(200,200,200)] flex items-center justify-center transition-all left-[var(--posX)] top-[var(--posY)]`} style={{"--posX": (posX - 1) * 140 + 20 + "px", "--posY": (posY - 1)  * 140 + 20 + "px"} as React.CSSProperties}  ref={refTile}>
+        <p className="text-[36px] font-bold">{count}</p>
     </div>
 }
 

@@ -166,7 +166,7 @@ function Pixel() {
 
     return <section className="h-screen relative">
         <div className="h-full flex justify-center items-center">
-            <div className="">
+            <div className="relative">
                 <div className="flex justify-between mb-[10px]">
                     <div className="style-button w-[220px] h-[40px] text-[20px]/[35px]" onClick={() => handleClearCanvas()}>Очистить</div>
                     <div className="h-[40px] w-[140px] text-[20px]/[35px] text-white bg-black-1 px-[20px] rounded-[10px] flex justify-between">
@@ -177,7 +177,7 @@ function Pixel() {
                 <div className="border-black-1 border-[20px] rounded-[20px]">
                     <canvas ref={refCanvas} width={widthCanvas} height={heightCanvas} className="cursor-pointer bg-white" />
                 </div>
-                <div className="flex gap-[10px] bg-black-1 py-[20px] px-[30px] rounded-[20px] absolute bottom-[20px] left-[50%] translate-x-[-50%]">
+                <div className="flex flex-col gap-[10px] bg-black-1 p-[15px] rounded-[20px] absolute top-[50px] right-[-85px]">
                     {listDefaultColor.map((color) => {
                         let strVar = { "--bg-c1": color } as React.CSSProperties;
                         return <div className={"h-[45px] w-[45px] bg-[var(--bg-c1)] rounded-full border-[#808080] border-[2px] cursor-pointer " + (selectColor == color ? "opacity-100" : "opacity-50")} style={strVar}

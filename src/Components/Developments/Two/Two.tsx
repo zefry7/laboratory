@@ -10,6 +10,32 @@ interface GridCell {
 let coord = new Array(16).fill({ count: 0, index: 0, key: 0 })
 let keyCount = -1
 
+function sumCell(mass) {
+    for (let i = 0; i < 3; ++i) {
+        for (let j = i + 1; j < 4; ++j) {
+            if (mass[i].count == 0 && mass[j].count != 0) {
+                mass[i] = mass[j]
+                mass[j] = { count: 0, index: 0, key: 0 }
+            } else if (mass[i].count == mass[j].count) {
+                mass[i] = { ...mass[i], count: mass[i].count * 2 }
+                mass[j] = { count: 0, index: 0, key: 0 }
+            } else if (mass[i].count != mass[j].count && mass[j].count != 0) {
+                break
+            }
+        }
+    }
+
+    return mass
+}
+
+function indexTrue(res) {
+    for (let i = 0; i < res.length; ++i) {
+        res[i] = { count: res[i].count, index: i, key: res[i].key }
+    }
+
+    return res
+}
+
 function Two() {
     const [grid, setGrid] = useState(coord)
 
@@ -24,9 +50,6 @@ function Two() {
         let c = Math.floor(Math.random() * sel.length)
         let index = sel[c]
 
-        console.log(index);
-
-
         keyCount++
         setGrid(grid.map((v, i) => {
             if (i == index) {
@@ -38,7 +61,7 @@ function Two() {
     }
 
     useEffect(() => {
-        console.log(grid);
+        // console.log(grid);
     }, [grid])
 
 
@@ -47,71 +70,44 @@ function Two() {
     const handleKeyDown = useCallback((e) => {
         if (keyDown) {
             setKeyDown(false)
+            let arr = [...grid]
+            let res: GridCell[] = new Array(16)
             if (e.key == "w") {
-                let arr = [...grid]
-
-                if (arr[0] == arr[4]) {
-                    arr[0] *= 2
-                    arr[4] = 0
-                }
-                if (arr[0] == arr[8]) {
-                    arr[0] *= 2
-                    arr[8] = 0
-                }
-                if (arr[0] == arr[12]) {
-                    arr[0] *= 2
-                    arr[12] = 0
-                }
-
-                setGrid([...arr])
-            } else if (e.key == "s") {
-                setGrid(grid.map((v, i) => {
-                    if (v.x != 0) {
-                        return { x: v.x, y: 4, count: 2 }
-                    } else {
-                        return v
-                    }
-                }))
-            } else if (e.key == "a") {
-                let arr = [...grid]
-                let res: GridCell[] = []
-
-                function sumCell(mass) {
-                    for (let i = 0; i < 3; ++i) {
-                        for (let j = i + 1; j < 4; ++j) {
-                            if(mass[i].count == 0 && mass[j].count != 0) {
-                                mass[i] = mass[j]
-                                mass[j] = { count: 0, index: 0, key: 0 }
-                            } else if (mass[i].count == mass[j].count) {
-                                mass[i] = { ...mass[i], count: mass[i].count * 2 }
-                                mass[j] = { count: 0, index: 0, key: 0 }
-                            } else if (mass[i].count != mass[j].count && mass[j].count != 0){
-                                break
-                            }
-                        }
-                    }
-
-                    return mass
-                }
-
                 for (let i = 0; i < 4; ++i) {
-                    let a = sumCell(arr.slice(i * 4, i * 4 + 4))
-                    res = [...res, ...a]
+                    let a = sumCell([arr[i], arr[i + 4], arr[i + 8], arr[i + 12]])
+                    res[i] = a[0]
+                    res[i + 4] = a[1]
+                    res[i + 8] = a[2]
+                    res[i + 12] = a[3]
                 }
-
-                for (let i = 0; i < res.length; ++i) {
-                    res[i] = { count: res[i].count, index: i, key: res[i].key }
+                setGrid(indexTrue(res))
+            } else if (e.key == "s") {
+                for (let i = 0; i < 4; ++i) {
+                    let a = sumCell([arr[i + 12], arr[i + 8], arr[i + 4], arr[i]])
+                    res[i + 12] = a[0]
+                    res[i + 8] = a[1]
+                    res[i + 4] = a[2]
+                    res[i] = a[3]
                 }
-
-                setGrid([...res])
+                setGrid(indexTrue(res))
+            } else if (e.key == "a") {
+                for (let i = 0; i < 4; ++i) {
+                    let a = sumCell([arr[i * 4], arr[i * 4 + 1], arr[i * 4 + 2], arr[i * 4 + 3]])
+                    res[i * 4] = a[0]
+                    res[i * 4 + 1] = a[1]
+                    res[i * 4 + 2] = a[2]
+                    res[i * 4 + 3] = a[3]
+                }
+                setGrid(indexTrue(res))
             } else if (e.key == "d") {
-                setGrid(grid.map((v, i) => {
-                    if (v.x != 0) {
-                        return { x: 4, y: v.y, count: 2 }
-                    } else {
-                        return v
-                    }
-                }))
+                for (let i = 3; i >= 0; --i) {
+                    let a = sumCell([arr[i * 4 + 3], arr[i * 4 + 2], arr[i * 4 + 1], arr[i * 4]])
+                    res[i * 4 + 3] = a[0]
+                    res[i * 4 + 2] = a[1]
+                    res[i * 4 + 1] = a[2]
+                    res[i * 4] = a[3]
+                }
+                setGrid(indexTrue(res))
             }
             setTimeout(() => {
                 setKeyDown(true)
