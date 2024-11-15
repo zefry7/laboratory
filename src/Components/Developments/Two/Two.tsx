@@ -20,7 +20,7 @@ function indexTrue(res) {
 
 function checkLose(grid) {
     for (let i = 0; i < grid.length; ++i) {
-        if(grid[i].count == 0)
+        if (grid[i].count == 0)
             return false
         if (i % 4 != 3 && i < 12) {
             if (grid[i].count == grid[i + 4].count || grid[i].count == grid[i + 1].count) {
@@ -42,6 +42,7 @@ function Two() {
     const [keyDown, setKeyDown] = useState(true)
     const [total, setTotal] = useState(0)
     const [lose, setLose] = useState(false)
+    const [record, setRecord] = useState(0)
     const keyCount = useRef(-1)
 
     const handleAddTile = () => {
@@ -70,12 +71,21 @@ function Two() {
     useEffect(() => {
         handleAddTile()
         handleAddTile()
+
+        const r = localStorage.getItem("record");
+        if(r != undefined) {
+            setRecord(Number(r))
+        }
     }, [])
 
     useEffect(() => {
-        console.log(grid);
         let boolLose = checkLose(grid)
+
         if (boolLose == true) {
+            if(total > record) {
+                localStorage.setItem("record", total.toString())
+                setRecord(total)
+            }
             setLose(true)
         }
     }, [grid])
@@ -178,10 +188,9 @@ function Two() {
         <div className="flex items-center h-full w-max mx-auto">
             <div className="flex flex-col items-center relative">
                 <div className="flex justify-between mb-[10px]">
-                    {/* <div className="style-button w-[220px] h-[40px] text-[20px]/[35px]" onClick={() => handleClearCanvas()}>Очистить</div> */}
                     <div className=" w-[200px] text-[20px]/[35px] text-white bg-black-1 px-[20px] rounded-[10px] flex justify-between">
                         <p className="flex flex-col items-center">Счёт <span>{total}</span></p>
-                        <p className="flex flex-col items-center">Рекорд <span>{total}</span></p>
+                        <p className="flex flex-col items-center">Рекорд <span>{record}</span></p>
                     </div>
                 </div>
                 <div className="grid grid-cols-4 grid-rows-4 gap-[20px] rounded-[17px] p-[20px] bg-black-1 relative">
@@ -212,6 +221,15 @@ function Two() {
                         </div>
                     }
                 </div>
+                <p className={"absolute w-[200px] h-[180px] left-[-200px] top-1/2 -translate-y-1/2"}>
+                    <pre className={"text-[24px]"}>
+                        Управление: <br />
+                        W - вверх <br />
+                        S - вниз <br />
+                        A - влево <br />
+                        D - вправо 
+                    </pre>
+                </p>
             </div>
         </div>
     </section>

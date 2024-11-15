@@ -6,11 +6,12 @@ import Tictactoe from "../Developments/Tictac/Tictactoe.tsx";
 import Intro from "../Developments/Intro/Intro.tsx";
 import Two from "../Developments/Two/Two.tsx";
 import Pixel from "../Developments/Pixel/Pixel.tsx";
+import Icon from "../Developments/Icon/index.tsx";
 
 function Layout() {
 	const [section, setSection] = useState("");
 	const refHeader = useRef<HTMLHeadingElement>(null);
-	
+
 	const handleSelectSection = useCallback((e: MouseEvent, nameSection) => {
 		e.stopPropagation();
 		setSection(nameSection);
@@ -24,8 +25,10 @@ function Layout() {
 				return <Two />;
 			case "pixel":
 				return <Pixel />
+			case "icon":
+				return <Icon />
 			default:
-				return <Intro refHeader={refHeader}/>;
+				return <Intro refHeader={refHeader} />;
 		}
 	};
 

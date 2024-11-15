@@ -55,6 +55,7 @@ function Pixel() {
     useEffect(() => {
         if (refCanvas.current != null) {
             let ctx = refCanvas.current.getContext("2d")
+            const rect = refCanvas.current.getBoundingClientRect()
 
             if (ctx) {
                 // createGrid(ctx)
@@ -62,8 +63,7 @@ function Pixel() {
                 ctx.fillRect(0, 0, widthCanvas, heightCanvas);
             }
 
-            function getCursorPosition(canvas, event) {
-                const rect = canvas.getBoundingClientRect()
+            function getCursorPosition(event) {
                 const x = Math.floor(Math.abs(event.clientX - rect.left))
                 const y = Math.floor(Math.abs(event.clientY - rect.top))
                 let coordX = Math.floor(x / 20) * 20
@@ -94,7 +94,6 @@ function Pixel() {
 
                 if (ctx != null) {
                     var imgData = ctx.getImageData(refDecectedX.current + 10, refDecectedY.current + 10, 1, 1);
-                    console.log(refDecectedX.current, refDecectedY.current, `rgb(${imgData.data[0].toString()}, ${imgData.data[1].toString()}, ${imgData.data[2].toString()})`);
 
                     ctx.beginPath()
                     ctx.moveTo(refDecectedX.current + 1, refDecectedY.current + 1)
@@ -120,12 +119,12 @@ function Pixel() {
                     refDecectedY.current = coordY
                 }
 
-                setCoord([coordX / 20 + 1, coordY / 20 + 1])
+                setCoord(() => [coordX / 20 + 1, coordY / 20 + 1])
             }
 
             refCanvas.current.addEventListener('mousedown', function (e) {
                 if (e.buttons == 1) {
-                    drawPixel(getCursorPosition(refCanvas.current, e))
+                    drawPixel(getCursorPosition(e))
                     refDriwing.current = true
                 }
             })
@@ -139,9 +138,9 @@ function Pixel() {
             })
 
             refCanvas.current.addEventListener("mousemove", function (e) {
-                detectedPixel(getCursorPosition(refCanvas.current, e))
+                detectedPixel(getCursorPosition(e))
                 if (refDriwing.current) {
-                    drawPixel(getCursorPosition(refCanvas.current, e))
+                    drawPixel(getCursorPosition(e))
                 }
             })
         }

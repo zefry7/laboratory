@@ -6,7 +6,7 @@ function Intro({ refHeader }) {
 	const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.stopPropagation();
 		if (refHeader.current) {
-			refHeader.current.classList.add("header_visible");
+			refHeader.current.classList.toggle("header-visible");
 		}
 	};
 
