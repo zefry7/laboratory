@@ -37,7 +37,7 @@ function Header({ handleSelectSection, refHeader }) {
 			className={"z-50 absolute top-0 left-[-300px] transition-left duration-150 h-full bg-white group"}
 			ref={refHeader}
 		>
-			<div className="p-[40px] relative w-[300px] h-full border-r-[4px] border-r-black-1">
+			<div className="p-[40px] relative w-[300px] h-full border-r-[4px] border-r-black-1 flex flex-col">
 				<div className="flex mb-[6px] group/title">
 					<div className="transition-all translate-y-[5px] pr-[5px] group-hover/title:rotate-[30deg]">
 						<img src="/flask.svg" alt="" />
@@ -67,6 +67,9 @@ function Header({ handleSelectSection, refHeader }) {
 						</button>
 					))}
 				</nav>
+				<p className={"mt-auto font-defaultFont text-[24px]"}>
+					Автор: <a href="https://github.com/zefry7" className={"text-blue-700 hover:text-blue-700 hover:underline"}>zefry7</a>
+				</p>
 				<button
 					className={"absolute h-[50px] w-[50px] right-[-50px] top-[5px] rounded-tr-[15px] border-black-1 border-[4px] rounded-br-[15px]"}
 					aria-label="Открыть меню"

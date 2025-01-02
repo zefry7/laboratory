@@ -6,7 +6,7 @@ import Tictactoe from "../Developments/Tictac/Tictactoe.tsx";
 import Intro from "../Developments/Intro/Intro.tsx";
 import Two from "../Developments/Two/Two.tsx";
 import Pixel from "../Developments/Pixel/Pixel.tsx";
-import Icon from "../Developments/Icon/index.tsx";
+import Icon from "../Developments/Icon/Icon.tsx";
 
 function Layout() {
 	const [section, setSection] = useState("");

@@ -35,6 +35,7 @@
 @layer components {
     header,
     section {
+        opacity: 0;
         @apply animate-open-section;
     }
 
